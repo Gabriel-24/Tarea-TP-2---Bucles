@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generador de Tablas</title>
+</head>
+<body>
+  <h1>Generador de Tablas</h1>
+  <p>Ingrese el número de filas y columnas:</p>
+  <input type="number" id="filas" placeholder="Filas">
+  <input type="number" id="columnas" placeholder="Columnas">
+  <button onclick="generarTabla()">Generar Tabla</button>
+  <table id="tabla" border="1"></table>
+
+  <script>
+    function generarTabla() {
+      const filas = parseInt(document.getElementById("filas").value);
+      const columnas = parseInt(document.getElementById("columnas").value);
+      const tabla = document.getElementById("tabla");
+      tabla.innerHTML = ''; 
+
+      if (!isNaN(filas) && !isNaN(columnas) && filas > 0 && columnas > 0) {
+        let numero = filas * columnas;
+
+        for (let i = 0; i < filas; i++) {
+          const fila = document.createElement("tr");
+          for (let j = 0; j < columnas; j++) {
+            const celda = document.createElement("td");
+            celda.textContent = numero;
+            fila.appendChild(celda);
+            numero--;
+          }
+          tabla.appendChild(fila);
+        }
+      } else {
+        alert("Por favor, ingrese un número válido para filas y columnas.");
+      }
+    }
+  </script>
+</body>
+</html>
